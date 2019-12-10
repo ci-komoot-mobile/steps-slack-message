@@ -52,6 +52,8 @@ type Config struct {
 	FooterIcon      string `env:"footer_icon"`
 	TimeStamp       bool   `env:"timestamp,opt[yes,no]"`
 	Fields          string `env:"fields"`
+	CallbackId	string `env:"callbackId"`
+	Interactions	string `env:"interactions"`
 	Buttons         string `env:"buttons"`
 }
 
@@ -88,7 +90,8 @@ func newMessage(c Config) Message {
 			ThumbURL:   selectValue(c.ThumbURL, c.ThumbURLOnError),
 			Footer:     c.Footer,
 			FooterIcon: c.FooterIcon,
-			Buttons:    parseButtons(c.Buttons),
+			Buttons:    parseButtons(c.Buttons, c.Interactions),
+			CallbackId: c.CallbackId
 		}},
 		IconEmoji: selectValue(c.IconEmoji, c.IconEmojiOnError),
 		IconURL:   selectValue(c.IconURL, c.IconURLOnError),
