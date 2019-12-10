@@ -296,3 +296,18 @@ inputs:
         The *url* is the fully qualified http or https url to deliver users to.
 
         An attachment may contain 1 to 5 buttons.
+  - callbackId:
+    title: "The callback id for the interactions"
+  - interactions: 
+    opts:
+      title: "A list of interactive buttons attached ot the message"
+      description: |
+        Interactive buttons separated by newlines and each field contains a `text`, `name` and a `value`.
+        The `text`, `name` and `value` fields are separated by a pipe `|` character.
+        Empty lines and lines without 2 separators are omitted.
+        
+        The *text* is the label for the button.
+        The *name* is the name used in the interaction
+        The *value* is the value used in the interaction
+        
+        An attachment may contain 1 to 5 buttons.
