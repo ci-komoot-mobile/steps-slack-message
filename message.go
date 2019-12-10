@@ -98,6 +98,8 @@ type Attachment struct {
 	//
 	// An attachment may contain 1 to 5 buttons.
 	Buttons []Button `json:"actions,omitempty"`
+	
+	CallbackId string `json:"callback_id,omitempty"`
 }
 
 // Field will be displayed in a table inside the attachment.
@@ -144,6 +146,14 @@ type Button struct {
 	Style string
 }
 
+type Interaction struct {
+	Type string
+	Text string
+	Name string
+	Value string
+	Style string
+}
+
 // MarshalJSON implements json.Marshaler.MarshalJSON.
 func (b Button) MarshalJSON() ([]byte, error) {
 	m := make(map[string]string)
@@ -154,9 +164,24 @@ func (b Button) MarshalJSON() ([]byte, error) {
 	return json.Marshal(m)
 }
 
-func parseButtons(s string) (bs []Button) {
+fun (i Interaction) MarshalJSON() ([]byte, error) {
+	m := make(map[string]string)
+	m["type"] = "button"
+	m["text"] = b.Text
+	m["style"] = "default"
+	
+	m["name"] = b.Name
+	m["value"] = b.Value
+	return json.Marshal(m)
+}
+
+func parseButtons(s string, i string) (bs []Button) {
 	for _, p := range pairs(s) {
 		bs = append(bs, Button{Text: p[0], URL: p[1]})
+	}
+	
+	for _, ip := range truples(i) {
+		bs = append(bs, Interaction{Text: p[0], Name: p[1], Value: [2]})
 	}
 	return
 }
@@ -172,4 +197,15 @@ func pairs(s string) [][2]string {
 		}
 	}
 	return ps
+}
+
+func truples(s string) [][3]string {
+	var ps [][3]string
+	for _, line := range strings.Split(s, "\n") {
+		a := strings.SplitN(line, "|", 3)
+		if (len(a) == 3 && a[0] != "" && a[1] != "" && a[2] != "" {
+			ps = append(ps, [3]string{a[0], a[1], a[2]})
+		}
+    	}
+    	return ps
 }
