@@ -181,7 +181,7 @@ func parseButtons(s string, i string) (bs []Button) {
 	}
 	
 	for _, ip := range truples(i) {
-		bs = append(bs, Interaction{Text: p[0], Name: p[1], Value: [2]})
+		bs = append(bs, Interaction{Text: ip[0], Name: ip[1], Value: ip[2]})
 	}
 	return
 }
@@ -203,7 +203,7 @@ func truples(s string) [][3]string {
 	var ps [][3]string
 	for _, line := range strings.Split(s, "\n") {
 		a := strings.SplitN(line, "|", 3)
-		if (len(a) == 3 && a[0] != "" && a[1] != "" && a[2] != "" {
+		if len(a) == 3 && a[0] != "" && a[1] != "" && a[2] != "" {
 			ps = append(ps, [3]string{a[0], a[1], a[2]})
 		}
     	}
