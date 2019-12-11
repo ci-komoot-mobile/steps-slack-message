@@ -164,7 +164,7 @@ func (b Button) MarshalJSON() ([]byte, error) {
 	return json.Marshal(m)
 }
 
-fun (i Interaction) MarshalJSON() ([]byte, error) {
+func (i Interaction) MarshalJSON() ([]byte, error) {
 	m := make(map[string]string)
 	m["type"] = "button"
 	m["text"] = b.Text
