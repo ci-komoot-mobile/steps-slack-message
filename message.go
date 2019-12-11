@@ -157,8 +157,7 @@ func (b Button) MarshalJSON() ([]byte, error) {
 	m["text"] = b.Text
 	if len(b.URL) > 0 {
 		m["url"] = b.URL
-	}
-	else {
+	} else {
 		m["name"] = i.Name
 		m["value"] = i.Value
 	}
