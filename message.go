@@ -144,14 +144,10 @@ type Button struct {
 
 	// Style is set to default so the buttons will use the UI's default text color.
 	Style string
-}
-
-type Interaction struct {
-	Type string
-	Text string
+	
 	Name string
 	Value string
-	Style string
+	
 }
 
 // MarshalJSON implements json.Marshaler.MarshalJSON.
@@ -159,19 +155,14 @@ func (b Button) MarshalJSON() ([]byte, error) {
 	m := make(map[string]string)
 	m["type"] = "button"
 	m["text"] = b.Text
-	m["url"] = b.URL
+	if len(b.URL) > 0 {
+		m["url"] = b.URL
+	}
+	else {
+		m["name"] = i.Name
+		m["value"] = i.Value
+	}
 	m["style"] = "default"
-	return json.Marshal(m)
-}
-
-func (i Interaction) MarshalJSON() ([]byte, error) {
-	m := make(map[string]string)
-	m["type"] = "button"
-	m["text"] = b.Text
-	m["style"] = "default"
-	
-	m["name"] = b.Name
-	m["value"] = b.Value
 	return json.Marshal(m)
 }
 
@@ -181,7 +172,7 @@ func parseButtons(s string, i string) (bs []Button) {
 	}
 	
 	for _, ip := range truples(i) {
-		bs = append(bs, Interaction{Text: ip[0], Name: ip[1], Value: ip[2]})
+		bs = append(bs, Button{Text: ip[0], Name: ip[1], Value: ip[2]})
 	}
 	return
 }
