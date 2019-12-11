@@ -297,7 +297,8 @@ inputs:
 
         An attachment may contain 1 to 5 buttons.
   - callbackId:
-    title: "The callback id for the interactions"
+    opts:
+      title: "The callback id for the interactions"
   - interactions: 
     opts:
       title: "A list of interactive buttons attached ot the message"
