@@ -91,7 +91,7 @@ func newMessage(c Config) Message {
 			Footer:     c.Footer,
 			FooterIcon: c.FooterIcon,
 			Buttons:    parseButtons(c.Buttons, c.Interactions),
-			CallbackId: c.CallbackId
+			CallbackId: c.CallbackId,
 		}},
 		IconEmoji: selectValue(c.IconEmoji, c.IconEmojiOnError),
 		IconURL:   selectValue(c.IconURL, c.IconURLOnError),
